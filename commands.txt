@@ -1,0 +1,33 @@
+https://www.npmjs.com/package/kafka-node#producer
+
+Anotaciones del curso 
+    https://github.com/adrianeguez/2021-diners-kafka-mod1
+
+
+Kafka Instalation
+	sudo apt install openjdk-8-jdk
+	change java version
+	sudo update-alternatives --config java
+	https://sdkman.io/install
+	sdk install scala 2.13.7
+	Descargar Kafka con la version de scala deseada
+	https://www.apache.org/dyn/closer.cgi?path=/kafka/3.0.0/kafka_2.13-3.0.0.tgz
+
+Ensemble
+sudo bin/zookeeper-server-start.sh config/zookeeper.properties
+
+Kafka
+sudo bin/kafka-server-start.sh config/server.properties
+
+Crear Topicos
+sudo bin/kafka-topics.sh --create --topic my_topic --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1
+sudo bin/kafka-topics.sh --create --topic topico_replicado --bootstrap-server localhost:9092 --replication-factor 3 --partitions 1 
+sudo bin/kafka-topics.sh --create --topic topico_particiones --bootstrap-server localhost:9092 --replication-factor 1 --partitions 3 
+
+sudo bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+
+Producir Mensajes
+sudo bin/kafka-console-producer.sh --broker-list localhost:9092 --topic my_topic --bootstrap-server localhost:9092
+
+Recuperar Mensajes
+sudo bin/kafka-console-consumer.sh --topic my_topic --from-beginning --bootstrap-server localhost:9092

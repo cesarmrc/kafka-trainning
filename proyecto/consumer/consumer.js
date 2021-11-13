@@ -15,12 +15,13 @@ const kafka = require('kafka-node'),
     );
 
 consumer.on('message', async (message) => {
+    const date = new Date();
     const record = {
         topic: message.topic,
         value: message.value,
         partition: message.partition
     };
-    const id = message.offset.toString();
+    const id = message.offset.toString() + ' - ' + date.toISOString();
     await db.get(id, async (err, data) => {
         if (err !== null) {
             if (err.statusCode === 404) {

@@ -10,8 +10,9 @@ const postEvent = {
             method: 'POST',
             path: '/event',
             handler: function (request, h) {
-                kafkaHelper.send('my_topic', 'HOLA LOLA');
-                return 'hello, world';
+                const message = 'New message post ' + new Date().toISOString();
+                kafkaHelper.send('my_topic', message);
+                return message;
             }
         });
     }
